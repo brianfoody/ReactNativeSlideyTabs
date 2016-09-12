@@ -1,7 +1,20 @@
 {
   "name": "ReactNativeSlideyTabs",
+  "description": "An Android style tab interface.",
   "version": "0.0.1",
-  "private": true,
+  "keywords": [
+      "react-component",
+      "react-native",
+      "ios",
+      "android",
+      "Material Design",
+      "Navigation",
+      "tab",
+      "tab",
+      "tabbed"
+  ],
+  "license": "MIT",
+  "main": "./index.js",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
