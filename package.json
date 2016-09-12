@@ -1,7 +1,7 @@
 {
   "name": "ReactNativeSlideyTabs",
   "description": "An Android style tab interface.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "keywords": [
       "react-component",
       "react-native",
@@ -16,8 +16,8 @@
   "nativePackage": true,
   "license": "MIT",
   "main": "./index.js",
-  "dependencies": {
-    "react": "^15.2.1",
-    "react-native": "^0.29.0"
+  "peerDependencies": {
+    "react": ">=15.2.1",
+    "react-native": ">=0.29.0"
   }
 }
