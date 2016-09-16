@@ -147,7 +147,7 @@ class SlideyTabsContent extends Component {
 
   render() {
     const {pannerTransformation, transformation} = this.state
-    const {pannerStyle, tabs} = this.props
+    const {noSlidey, pannerStyle, tabs} = this.props
 
     const viewCount = this.props.children.length
 
@@ -158,7 +158,7 @@ class SlideyTabsContent extends Component {
     return (
       <View style={styles.container}>
         <Animated.View style={[styles.innerContainer, {width: width}, transformation]}
-                       {...this._panResponder.panHandlers}>
+                       {...(noSlidey ? {} : this._panResponder.panHandlers)}>
 
          {this.props.children}
 

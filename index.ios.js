@@ -7,6 +7,7 @@
 import React, { Component } from 'react'
 import {
   AppRegistry,
+  ScrollView,
   StyleSheet, 
   Text, 
   View
@@ -19,13 +20,15 @@ class ReactNativeSlideyTabs extends Component {
     return (
       <SlideyTabs titles={["Home", "Trending", "My place"]}
                   pannerStyle={{backgroundColor: 'white'}}
-                  navStyle={{height: 50, backgroundColor: 'red'}}>
+                  navStyle={{height: 50, backgroundColor: 'red'}}
+                  noSlidey={true}>
 
-        <View style={[styles.content, styles.contentItem]}>
-          <Text style={[styles.contentText]}>
-            Home
-          </Text>
-        </View>
+        <ScrollView style={{flex: 1}} contentContainerStyle={[styles.contentItem]}>
+          <View style={[styles.chunk, {backgroundColor: 'red'}]} />
+          <View style={[styles.chunk, {backgroundColor: 'green'}]} />
+          <View style={[styles.chunk, {backgroundColor: 'blue'}]} />
+          <View style={[styles.chunk, {backgroundColor: 'purple'}]} />
+        </ScrollView>
         <View style={[styles.content, styles.contentItem]}>
           <Text style={[styles.contentText]}>
             Trending
@@ -55,6 +58,10 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
   },
+  chunk: {
+    height: 200,
+    width: 300,
+  }
 })
 
 
