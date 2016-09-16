@@ -20,7 +20,8 @@ class SlideyTabsContent extends Component {
     this.state = {
       initialValue: new Animated.Value(0),
       pannerPosition: new Animated.Value(0),
-      tabPosition: new Animated.Value(0)
+      tabPosition: new Animated.Value(0),
+      tabsLoaded: []
     }
 
     this.state.transformation = {
@@ -54,6 +55,10 @@ class SlideyTabsContent extends Component {
       return max
     else 
       return val
+  }
+
+  componentDidMount() {
+    this.checkOnFirstLoad(0)
   }
 
   componentWillMount() {
@@ -108,9 +113,13 @@ class SlideyTabsContent extends Component {
 
     const relativeDirection = direction < 0 ? 1 : -1
 
-    const currentTab = this._deriveCurrentTab()
+    const currentTab = this._deriveCurrentTab(this.state.initialValue._value)
 
     const calculatedNewPosition = this._getAbsoluteValue((currentTab + relativeDirection) * windowDimensions.width * -1)
+
+    const newTab = this._deriveCurrentTab(calculatedNewPosition)
+
+    this.checkOnFirstLoad(newTab)
 
     Animated.spring(this.state.tabPosition, {
       toValue: calculatedNewPosition,
@@ -129,20 +138,34 @@ class SlideyTabsContent extends Component {
 
     const calculatedNewPosition = tabNumber * windowDimensions.width * -1
 
+    this.checkOnFirstLoad(tabNumber)
+
     Animated.spring(this.state.tabPosition, {
       toValue: calculatedNewPosition,
-      friction: 10  
+      friction: 12  
     }).start()
 
     Animated.spring(this.state.pannerPosition, {
       toValue: Math.abs(calculatedNewPosition / viewCount),
-      friction: 10  
+      friction: 12 
     }).start()
   }
 
-  _deriveCurrentTab()
+  _deriveTabFromPosition(position)
   {
-    return Math.floor(Math.abs(this.state.initialValue._value) / windowDimensions.width)
+    return Math.floor(Math.abs(position) / windowDimensions.width)
+  }
+
+  checkOnFirstLoad(tabNumber)
+  {
+    const {onFirstLoad} = this.props
+    const {tabsLoaded} = this.state
+
+    if (tabsLoaded.indexOf(tabNumber) == -1)
+    {
+      onFirstLoad && onFirstLoad(tabNumber)
+      this.setState({tabsLoaded: tabsLoaded.concat([tabNumber])})
+    }
   }
 
   render() {

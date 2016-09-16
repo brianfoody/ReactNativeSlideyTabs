@@ -17,11 +17,13 @@ import SlideyTabs from './src/components/SlideyTabs'
 
 class ReactNativeSlideyTabs extends Component {
   render() {
+    const onFirstLoad = (id) => console.log(`Loaded ${id}`)
     return (
       <SlideyTabs titles={["Home", "Trending", "My place"]}
                   pannerStyle={{backgroundColor: 'white'}}
                   navStyle={{height: 50, backgroundColor: 'red'}}
-                  noSlidey={true}>
+                  noSlidey={true}
+                  onFirstLoad={onFirstLoad}>
 
         <ScrollView style={{flex: 1}} contentContainerStyle={[styles.contentItem]}>
           <View style={[styles.chunk, {backgroundColor: 'red'}]} />

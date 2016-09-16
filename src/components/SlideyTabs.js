@@ -16,7 +16,7 @@ class SlideyTabs extends Component {
   }
 
   render() {
-    const {noSlidey, pannerStyle, navStyle, titles} = this.props
+    const {onFirstLoad, noSlidey, pannerStyle, navStyle, titles} = this.props
     
     return (
       <View style={styles.container}>
@@ -26,7 +26,8 @@ class SlideyTabs extends Component {
                        titles={titles} />
         <SlideyTabsContent ref="TabsContent"
                            pannerStyle={pannerStyle}
-                           noSlidey={noSlidey}>
+                           noSlidey={noSlidey}
+                           onFirstLoad={onFirstLoad}>
          {this.props.children}
         </SlideyTabsContent>
       </View>
